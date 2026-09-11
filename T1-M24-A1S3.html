@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Effective Communication: how clear, respectful, and intentional communication improves understanding, teamwork, and relationships.">
+  <meta name="author" content="Derek Ronquillo">
+  <title>Effective Communication — Derek Ronquillo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink-900: #171717;
+      --ink-700: #3f3f46;
+      --ink-500: #71717a;
+      --paper-050: #fafafa;
+      --paper-000: #ffffff;
+      --line-200: #e4e4e7;
+      --accent-600: #2563eb;
+      --accent-100: #dbeafe;
+      --accent-050: #eff6ff;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.06);
+      --serif-display: "Libre Baskerville", Georgia, serif;
+      --sans-interface: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --content-width: 1180px;
+      --reading-width: 760px;
+      --motion-standard: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--paper-050);
+      color: var(--ink-900);
+      font-family: var(--sans-interface);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+      background: var(--accent-100);
+      color: var(--ink-900);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(228, 228, 231, 0.9);
+      background: rgba(250, 250, 250, 0.86);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+    }
+
+    .site-header__inner {
+      width: min(100% - 48px, var(--content-width));
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      font-family: var(--serif-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark__detail {
+      color: var(--accent-600);
+      font-family: var(--sans-interface);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .primary-nav__list {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .primary-nav__link {
+      position: relative;
+      padding: 8px 0;
+      color: var(--ink-700);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: color 180ms ease;
+    }
+
+    .primary-nav__link::after {
+      position: absolute;
+      right: 0;
+      bottom: 2px;
+      left: 0;
+      height: 1px;
+      background: var(--accent-600);
+      content: "";
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 240ms var(--motion-standard);
+    }
+
+    .primary-nav__link:hover,
+    .primary-nav__link:focus-visible {
+      color: var(--accent-600);
+    }
+
+    .primary-nav__link:hover::after,
+    .primary-nav__link:focus-visible::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .editorial-frame {
+      width: min(100% - 48px, var(--content-width));
+      margin: 0 auto;
+      padding: 76px 0 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 84px;
+    }
+
+    .article-column {
+      min-width: 0;
+    }
+
+    .article-header {
+      max-width: var(--reading-width);
+      margin-bottom: 42px;
+    }
+
+    .article-header__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--accent-600);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .article-header__eyebrow::before {
+      width: 26px;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+
+    .article-header__title {
+      font-family: var(--serif-display);
+      font-size: clamp(2.45rem, 5vw, 4.2rem);
+      line-height: 1.18;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+    }
+
+    .article-header__dek {
+      max-width: 680px;
+      margin-top: 22px;
+      color: var(--ink-700);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .article-meta {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 14px;
+      color: var(--ink-500);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .article-meta__author {
+      color: var(--ink-900);
+      font-weight: 700;
+    }
+
+    .article-meta__separator {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--line-200);
+    }
+
+    .article-hero {
+      position: relative;
+      overflow: hidden;
+      margin: 0 0 48px;
+      border: 1px solid var(--line-200);
+      border-radius: 18px;
+      background: var(--paper-000);
+      box-shadow: var(--shadow-soft);
+      isolation: isolate;
+    }
+
+    .article-hero__image {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .article-hero__caption {
+      padding: 12px 16px;
+      color: var(--ink-500);
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+
+    .article-content {
+      max-width: var(--reading-width);
+    }
+
+    .article-content > p {
+      margin-bottom: 24px;
+      color: var(--ink-700);
+      font-size: 1.04rem;
+      line-height: 1.9;
+    }
+
+    .article-content > p:first-of-type::first-letter {
+      float: left;
+      margin: 8px 10px 0 0;
+      color: var(--accent-600);
+      font-family: var(--serif-display);
+      font-size: 4.1rem;
+      font-weight: 700;
+      line-height: 0.72;
+    }
+
+    .article-section {
+      margin: 54px 0;
+    }
+
+    .article-section__number {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent-600);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+
+    .article-section__heading {
+      margin-bottom: 18px;
+      font-family: var(--serif-display);
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      line-height: 1.35;
+      letter-spacing: -0.025em;
+    }
+
+    .article-quote {
+      margin: 42px 0;
+      padding: 28px 30px;
+      border-left: 3px solid var(--accent-600);
+      border-radius: 0 12px 12px 0;
+      background: var(--accent-050);
+    }
+
+    .article-quote__text {
+      color: var(--ink-900);
+      font-family: var(--serif-display);
+      font-size: 1.25rem;
+      line-height: 1.7;
+    }
+
+    .article-quote__source {
+      display: block;
+      margin-top: 12px;
+      color: var(--ink-500);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .communication-points {
+      margin: 26px 0 32px;
+      display: grid;
+      gap: 14px;
+      list-style: none;
+    }
+
+    .communication-points__item {
+      position: relative;
+      padding: 18px 20px 18px 50px;
+      border: 1px solid var(--line-200);
+      border-radius: 12px;
+      background: var(--paper-000);
+      color: var(--ink-700);
+    }
+
+    .communication-points__item::before {
+      position: absolute;
+      top: 22px;
+      left: 20px;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--accent-600);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .communication-points__item::after {
+      position: absolute;
+      top: 27px;
+      left: 25px;
+      width: 8px;
+      height: 4px;
+      border-bottom: 1px solid var(--accent-600);
+      border-left: 1px solid var(--accent-600);
+      content: "";
+      transform: rotate(-45deg);
+    }
+
+    .article-tags {
+      margin-top: 58px;
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid var(--line-200);
+    }
+
+    .article-tags__label {
+      margin-right: 4px;
+      color: var(--ink-500);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .article-tags__item {
+      padding: 6px 11px;
+      border: 1px solid var(--line-200);
+      border-radius: 999px;
+      color: var(--ink-700);
+      background: var(--paper-000);
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+
+    .author-panel {
+      position: sticky;
+      top: 112px;
+      align-self: start;
+      padding: 26px;
+      border: 1px solid var(--line-200);
+      border-radius: 16px;
+      background: var(--paper-000);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .author-panel__label {
+      margin-bottom: 20px;
+      color: var(--accent-600);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .author-panel__portrait {
+      width: 76px;
+      height: 76px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line-200);
+      border-radius: 50%;
+      object-fit: cover;
+      filter: saturate(0.9);
+    }
+
+    .author-panel__name {
+      margin-bottom: 10px;
+      font-family: var(--serif-display);
+      font-size: 1.35rem;
+      line-height: 1.4;
+    }
+
+    .author-panel__bio {
+      color: var(--ink-500);
+      font-size: 0.86rem;
+      line-height: 1.75;
+    }
+
+    .author-panel__divider {
+      height: 1px;
+      margin: 22px 0;
+      background: var(--line-200);
+    }
+
+    .author-panel__note {
+      color: var(--ink-700);
+      font-size: 0.78rem;
+      line-height: 1.7;
+    }
+
+    .newsletter-panel {
+      margin-top: 24px;
+      padding: 26px;
+      border: 1px solid var(--accent-100);
+      border-radius: 16px;
+      background: var(--accent-050);
+    }
+
+    .newsletter-panel__title {
+      margin-bottom: 8px;
+      font-family: var(--serif-display);
+      font-size: 1.15rem;
+    }
+
+    .newsletter-panel__copy {
+      margin-bottom: 18px;
+      color: var(--ink-700);
+      font-size: 0.8rem;
+      line-height: 1.65;
+    }
+
+    .newsletter-panel__form {
+      display: grid;
+      gap: 8px;
+    }
+
+    .newsletter-panel__input {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--line-200);
+      border-radius: 9px;
+      outline: none;
+      background: var(--paper-000);
+      color: var(--ink-900);
+      font-size: 0.8rem;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .newsletter-panel__input:focus {
+      border-color: var(--accent-600);
+      box-shadow: 0 0 0 3px var(--accent-100);
+    }
+
+    .newsletter-panel__button {
+      padding: 11px 14px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--ink-900);
+      color: var(--paper-000);
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 700;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .newsletter-panel__button:hover {
+      background: var(--accent-600);
+      transform: translateY(-1px);
+    }
+
+    .site-footer {
+      margin-top: 100px;
+      border-top: 1px solid var(--line-200);
+      background: var(--paper-000);
+    }
+
+    .site-footer__inner {
+      width: min(100% - 48px, var(--content-width));
+      min-height: 90px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--ink-500);
+      font-size: 0.78rem;
+    }
+
+    .site-footer__copyright strong {
+      color: var(--ink-900);
+    }
+
+    @keyframes reveal-up {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @supports (animation-timeline: view()) {
+      .scroll-reveal {
+        animation: reveal-up linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 28%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 940px) {
+      .editorial-frame {
+        grid-template-columns: 1fr;
+        gap: 56px;
+      }
+
+      .author-panel {
+        position: static;
+        max-width: var(--reading-width);
+      }
+
+      .newsletter-panel {
+        max-width: var(--reading-width);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header__inner,
+      .editorial-frame,
+      .site-footer__inner {
+        width: min(100% - 32px, var(--content-width));
+      }
+
+      .site-header__inner {
+        min-height: 68px;
+      }
+
+      .brand-mark__detail {
+        display: none;
+      }
+
+      .primary-nav__list {
+        gap: 18px;
+      }
+
+      .primary-nav__link {
+        font-size: 0.76rem;
+      }
+
+      .editorial-frame {
+        padding-top: 48px;
+      }
+
+      .article-header__title {
+        font-size: 2.25rem;
+      }
+
+      .article-header__dek {
+        font-size: 0.98rem;
+      }
+
+      .article-hero {
+        margin-bottom: 38px;
+        border-radius: 12px;
+      }
+
+      .article-content > p {
+        font-size: 0.98rem;
+      }
+
+      .article-section {
+        margin: 44px 0;
+      }
+
+      .article-quote {
+        padding: 22px;
+      }
+
+      .site-footer__inner {
+        min-height: 76px;
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 0;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="#home" class="brand-mark" aria-label="Derek Ronquillo home">
+        Derek Ronquillo
+        <span class="brand-mark__detail">BLOG POST</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <ul class="primary-nav__list">
+          <li>
+            <a class="primary-nav__link" href="#home">Home</a>
+          </li>
+          <li>
+            <a class="primary-nav__link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="editorial-frame">
+    <article class="article-column">
+      <header class="article-header scroll-reveal">
+        <span class="article-header__eyebrow">English · Social Advocacy</span>
+        <h1 class="article-header__title">Small Actions, Cleaner Communities: An Online Advocacy for Responsible Waste Management</h1>
+        <p class="article-header__dek">
+          Online advocacy can turn an important community issue into a message that informs people, encourages responsible action, and creates positive social change.
+        </p>
+
+        <div class="article-meta" aria-label="Article information">
+          <span>By <strong class="article-meta__author">Derek Ronquillo</strong></span>
+          <span class="article-meta__separator" aria-hidden="true"></span>
+          <time datetime="2026-09-11">September 11, 2026</time>
+          <span class="article-meta__separator" aria-hidden="true"></span>
+          <span>10 min read</span>
+        </div>
+      </header>
+
+      <figure class="article-hero scroll-reveal">
+        <img
+          class="article-hero__image"
+          src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1600&auto=format&fit=crop"
+          alt="Person collecting plastic waste during an environmental cleanup"
+          loading="eager"
+        >
+        <figcaption class="article-hero__caption">
+          Responsible waste management begins with individual choices and becomes stronger through community participation.
+        </figcaption>
+      </figure>
+
+      <div class="article-content">
+        <p class="scroll-reveal">
+          Social issues are not limited to large institutions or government programs. Many of them can be seen in everyday community life. One example is improper waste disposal, which can affect streets, public spaces, waterways, and neighborhoods. Plastic packaging, food containers, bottles, and other forms of waste can accumulate when people do not have proper disposal habits or when communities lack effective waste-management practices.
+        </p>
+
+        <p class="scroll-reveal">
+          Because social media and other digital platforms can reach people quickly, online advocacy can be used to raise awareness about these problems. However, effective advocacy is not simply about posting a message. The message needs a clear purpose, an appropriate audience, respectful language, accurate information, and a practical action that people can follow.
+        </p>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">01 — THE SOCIAL ISSUE</span>
+          <h2 class="article-section__heading">Understanding the problem in the community</h2>
+          <p>
+            Improper waste disposal is a community issue because its effects can reach many people. When waste is left on sidewalks, parks, vacant areas, or waterways, it can make public spaces unpleasant and contribute to environmental problems. Plastic waste can also remain in the environment for a long time instead of breaking down quickly.
+          </p>
+          <p>
+            The problem is not always caused by one person or one group. It can involve individual habits, limited awareness, insufficient waste facilities, and other community conditions. An effective advocacy message should therefore avoid simply blaming people. Instead, it should explain the issue clearly and encourage practical behaviors that can contribute to improvement.
+          </p>
+        </section>
+
+        <blockquote class="article-quote scroll-reveal">
+          <p class="article-quote__text">
+            “Change becomes possible when awareness is followed by responsible action.”
+          </p>
+          <span class="article-quote__source">Online advocacy principle</span>
+        </blockquote>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">02 — THE AUDIENCE</span>
+          <h2 class="article-section__heading">Knowing who the message is for</h2>
+          <p>
+            The primary audience for this advocacy message is young people and other members of the local community who use public spaces, schools, parks, streets, and social media platforms. Young people are an important audience because they regularly use digital communication and can influence the habits of their friends, classmates, families, and communities.
+          </p>
+          <p>
+            The message should consider the audience's concerns and motivations. People are more likely to respond when they understand how an issue affects places they use every day. Instead of using complicated environmental terms, the advocacy should use simple language, practical examples, and actions that people can realistically perform.
+          </p>
+
+          <ul class="communication-points">
+            <li class="communication-points__item">
+              <strong>Inform the audience.</strong> Explain why improper waste disposal affects the community and environment.
+            </li>
+            <li class="communication-points__item">
+              <strong>Encourage responsibility.</strong> Show that everyday choices can contribute to cleaner public spaces.
+            </li>
+            <li class="communication-points__item">
+              <strong>Invite participation.</strong> Give people simple actions they can take instead of only describing the problem.
+            </li>
+          </ul>
+        </section>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">03 — THE PURPOSE</span>
+          <h2 class="article-section__heading">Turning awareness into action</h2>
+          <p>
+            The purpose of this online advocacy is to encourage people to practice responsible waste management and reduce unnecessary plastic waste in their daily lives. The message is designed to inform rather than shame, because lasting change is more likely when people understand why their actions matter.
+          </p>
+          <p>
+            The advocacy also aims to encourage community participation. Individuals can start with simple habits such as using reusable items, separating waste correctly, avoiding unnecessary single-use plastics, placing trash in the proper containers, and joining community cleanup activities. These actions may appear small, but consistent participation can create a larger collective effect.
+          </p>
+        </section>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">04 — THE ADVOCACY MESSAGE</span>
+          <h2 class="article-section__heading">A clear message can inspire responsible choices</h2>
+          <p>
+            The central message of the campaign is simple: a cleaner community begins with responsible everyday actions. The advocacy should remind people that waste does not simply disappear after it leaves their hands. Where it goes and how it is handled can affect other people and the environment.
+          </p>
+          <p>
+            A strong headline can immediately communicate the purpose of the campaign. A concise explanation can provide context, while a clear call to action tells the audience what they can do next. Visual materials such as photographs, illustrations, infographics, or short videos can further support the message by making the issue easier to understand.
+          </p>
+          <p>
+            The message should remain respectful and constructive. It should not insult people who have made mistakes or make unsupported claims about the community. Advocacy becomes more effective when it focuses on solutions and encourages people to participate in positive change.
+          </p>
+        </section>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">05 — CALL TO ACTION</span>
+          <h2 class="article-section__heading">Start with actions that are possible today</h2>
+          <p>
+            An advocacy message should not end with awareness. It should give the audience a realistic way to respond. People can begin by reducing unnecessary plastic use, bringing reusable bags or containers, properly sorting waste, avoiding littering, and encouraging friends and family to follow responsible disposal practices.
+          </p>
+          <p>
+            Communities can also organize cleanup activities, improve information campaigns, provide accessible waste containers, and share educational materials online. Schools and youth organizations can use social media to promote responsible habits and encourage students to become active participants in environmental programs.
+          </p>
+
+          <ul class="communication-points">
+            <li class="communication-points__item">
+              <strong>Reduce.</strong> Avoid unnecessary single-use plastic whenever a practical alternative is available.
+            </li>
+            <li class="communication-points__item">
+              <strong>Reuse.</strong> Use reusable bags, bottles, containers, and other items whenever possible.
+            </li>
+            <li class="communication-points__item">
+              <strong>Dispose properly.</strong> Place waste in the correct containers and follow local waste-management practices.
+            </li>
+            <li class="communication-points__item">
+              <strong>Share responsibly.</strong> Encourage others through respectful and accurate online communication.
+            </li>
+            <li class="communication-points__item">
+              <strong>Participate.</strong> Support community cleanups and other activities that improve shared spaces.
+            </li>
+          </ul>
+        </section>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">06 — EFFECTIVENESS</span>
+          <h2 class="article-section__heading">Evaluating whether the message works</h2>
+          <p>
+            An effective online advocacy message should be clear and concise. The audience should understand the issue, the reason it matters, and the action being requested without having to interpret a complicated message. The use of a strong headline, short paragraphs, visual aids, and a direct call to action can make the content easier to understand.
+          </p>
+          <p>
+            Respect and sensitivity are equally important. Environmental advocacy should recognize that communities have different resources, circumstances, and experiences. A responsible message should encourage better practices without making unfair assumptions about individuals or groups.
+          </p>
+          <p>
+            The potential impact of the campaign can also be evaluated through audience engagement. Views, shares, comments, reactions, and participation in related activities can provide useful information about how people respond. However, engagement numbers alone do not prove that social change has happened. The quality of participation and actual behavior should also be considered.
+          </p>
+        </section>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">07 — RESPONSIBLE DIGITAL COMMUNICATION</span>
+          <h2 class="article-section__heading">Advocacy must remain accurate and respectful</h2>
+          <p>
+            Digital platforms allow advocacy messages to spread quickly, but this also means inaccurate information can spread just as quickly. Before publishing environmental information, advocates should check whether their claims are supported by reliable sources. Statistics, photographs, quotations, and other information should not be manipulated to create unnecessary fear or outrage.
+          </p>
+          <p>
+            The language used in advocacy also matters. Harmful insults, personal attacks, discrimination, and exaggerated accusations can distract from the actual issue. A constructive message should criticize harmful practices when necessary while still treating people with dignity and encouraging them to improve.
+          </p>
+        </section>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">08 — IMPLEMENTATION</span>
+          <h2 class="article-section__heading">Taking the advocacy online</h2>
+          <p>
+            A blog, social media post, short video, or digital poster can be used to deliver this advocacy campaign. The content should be optimized so that people searching for topics such as plastic waste, environmental awareness, waste management, and community action can discover it more easily. Relevant keywords, a descriptive title, readable formatting, and useful tags can improve the visibility of the message.
+          </p>
+          <p>
+            After publishing, communication should continue. Responding respectfully to comments and questions allows the audience to participate in the conversation. If someone disagrees, the response should focus on the issue rather than attacking the person. Constructive interaction can help build trust and provide opportunities to clarify information.
+          </p>
+          <p>
+            Analytics can also be used to evaluate the campaign. Monitoring views, reach, shares, comments, and other engagement indicators can show which parts of the message attract attention. These results can help improve future advocacy content and make communication more effective.
+          </p>
+        </section>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">CONCLUSION</span>
+          <h2 class="article-section__heading">Online advocacy can turn communication into action</h2>
+          <p>
+            Social change does not always begin with a large organization or a major public campaign. It can begin with a clear message that helps people understand a problem and encourages them to take responsible action. In the case of improper waste disposal, online advocacy can help communities recognize the importance of cleaner surroundings and more responsible daily habits.
+          </p>
+          <p>
+            Effective advocacy requires more than posting information. It requires understanding the audience, defining a clear purpose, choosing respectful language, presenting accurate information, providing a practical call to action, and evaluating the response. When these principles are combined, digital communication can become a useful tool for awareness, participation, and positive community change.
+          </p>
+          <p>
+            A cleaner community is not created by one post alone. It is created when people continue the message through their actions. By reducing waste, disposing of it properly, sharing reliable information, and encouraging others to participate, each person can contribute to a more responsible and sustainable community.
+          </p>
+        </section>
+
+        <div class="article-tags scroll-reveal" aria-label="Article tags">
+          <span class="article-tags__label">Tags</span>
+          <span class="article-tags__item">Online Advocacy</span>
+          <span class="article-tags__item">Social Change</span>
+          <span class="article-tags__item">Effective Communication</span>
+          <span class="article-tags__item">Environmental Awareness</span>
+          <span class="article-tags__item">Social Issues</span>
+          <span class="article-tags__item">Digital Communication</span>
+          <span class="article-tags__item">Community Engagement</span>
+          <span class="article-tags__item">Responsible Communication</span>
+          <span class="article-tags__item">Call to Action</span>
+        </div>
+      </div>
+    </article>
+
+    <aside class="author-column">
+      <section class="author-panel scroll-reveal">
+        <p class="author-panel__label">About the Author</p>
+        <img
+          class="author-panel__portrait"
+          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop"
+          alt="Portrait placeholder for Derek Ronquillo"
+          loading="lazy"
+        >
+        <h2 class="author-panel__name">Derek Ronquillo</h2>
+        <p class="author-panel__bio">
+          I’m a Filipino/Chinese man living in Cavite. I’m a Grade 11 student interested in software engineering, technology, creative work, and continuous learning. I enjoy turning ideas into practical projects and using communication to share useful ideas.
+        </p>
+        <div class="author-panel__divider"></div>
+        <p class="author-panel__note">
+          This article presents an online advocacy message designed to promote responsible community environmental practices.
+        </p>
+      </section>
+
+      <div class="newsletter-panel">
+        <h3 class="newsletter-panel__title">Stay Informed</h3>
+        <p class="newsletter-panel__copy">Subscribe for regular updates on technology, communication, and digital advocacy.</p>
+        <form class="newsletter-panel__form">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input type="email" id="newsletter-email" class="newsletter-panel__input" placeholder="Enter your email" required>
+          <button type="submit" class="newsletter-panel__button">Subscribe</button>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="site-footer__inner">
+      <p class="site-footer__copyright">&copy; 2026 <strong>Derek Ronquillo</strong>. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

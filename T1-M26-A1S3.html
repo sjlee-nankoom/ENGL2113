@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Effective Communication: how clear, respectful, and intentional communication improves understanding, teamwork, and relationships.">
+  <meta name="author" content="Derek Ronquillo">
+  <title>Effective Communication — Derek Ronquillo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink-900: #171717;
+      --ink-700: #3f3f46;
+      --ink-500: #71717a;
+      --paper-050: #fafafa;
+      --paper-000: #ffffff;
+      --line-200: #e4e4e7;
+      --accent-600: #2563eb;
+      --accent-100: #dbeafe;
+      --accent-050: #eff6ff;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.06);
+      --serif-display: "Libre Baskerville", Georgia, serif;
+      --sans-interface: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --content-width: 1180px;
+      --reading-width: 760px;
+      --motion-standard: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--paper-050);
+      color: var(--ink-900);
+      font-family: var(--sans-interface);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+      background: var(--accent-100);
+      color: var(--ink-900);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(228, 228, 231, 0.9);
+      background: rgba(250, 250, 250, 0.86);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+    }
+
+    .site-header__inner {
+      width: min(100% - 48px, var(--content-width));
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      font-family: var(--serif-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark__detail {
+      color: var(--accent-600);
+      font-family: var(--sans-interface);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .primary-nav__list {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .primary-nav__link {
+      position: relative;
+      padding: 8px 0;
+      color: var(--ink-700);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: color 180ms ease;
+    }
+
+    .primary-nav__link::after {
+      position: absolute;
+      right: 0;
+      bottom: 2px;
+      left: 0;
+      height: 1px;
+      background: var(--accent-600);
+      content: "";
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 240ms var(--motion-standard);
+    }
+
+    .primary-nav__link:hover,
+    .primary-nav__link:focus-visible {
+      color: var(--accent-600);
+    }
+
+    .primary-nav__link:hover::after,
+    .primary-nav__link:focus-visible::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .editorial-frame {
+      width: min(100% - 48px, var(--content-width));
+      margin: 0 auto;
+      padding: 76px 0 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 84px;
+    }
+
+    .article-column {
+      min-width: 0;
+    }
+
+    .article-header {
+      max-width: var(--reading-width);
+      margin-bottom: 42px;
+    }
+
+    .article-header__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--accent-600);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .article-header__eyebrow::before {
+      width: 26px;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+
+    .article-header__title {
+      font-family: var(--serif-display);
+      font-size: clamp(2.45rem, 5vw, 4.2rem);
+      line-height: 1.18;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+    }
+
+    .article-header__dek {
+      max-width: 680px;
+      margin-top: 22px;
+      color: var(--ink-700);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .article-meta {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 14px;
+      color: var(--ink-500);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .article-meta__author {
+      color: var(--ink-900);
+      font-weight: 700;
+    }
+
+    .article-meta__separator {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--line-200);
+    }
+
+    .article-hero {
+      position: relative;
+      overflow: hidden;
+      margin: 0 0 48px;
+      border: 1px solid var(--line-200);
+      border-radius: 18px;
+      background: var(--paper-000);
+      box-shadow: var(--shadow-soft);
+      isolation: isolate;
+    }
+
+    .article-hero__image {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .article-hero__caption {
+      padding: 12px 16px;
+      color: var(--ink-500);
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+
+    .article-content {
+      max-width: var(--reading-width);
+    }
+
+    .article-content > p {
+      margin-bottom: 24px;
+      color: var(--ink-700);
+      font-size: 1.04rem;
+      line-height: 1.9;
+    }
+
+    .article-content > p:first-of-type::first-letter {
+      float: left;
+      margin: 8px 10px 0 0;
+      color: var(--accent-600);
+      font-family: var(--serif-display);
+      font-size: 4.1rem;
+      font-weight: 700;
+      line-height: 0.72;
+    }
+
+    .article-section {
+      margin: 54px 0;
+    }
+
+    .article-section__number {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent-600);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+
+    .article-section__heading {
+      margin-bottom: 18px;
+      font-family: var(--serif-display);
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      line-height: 1.35;
+      letter-spacing: -0.025em;
+    }
+
+    .article-quote {
+      margin: 42px 0;
+      padding: 28px 30px;
+      border-left: 3px solid var(--accent-600);
+      border-radius: 0 12px 12px 0;
+      background: var(--accent-050);
+    }
+
+    .article-quote__text {
+      color: var(--ink-900);
+      font-family: var(--serif-display);
+      font-size: 1.25rem;
+      line-height: 1.7;
+    }
+
+    .article-quote__source {
+      display: block;
+      margin-top: 12px;
+      color: var(--ink-500);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .communication-points {
+      margin: 26px 0 32px;
+      display: grid;
+      gap: 14px;
+      list-style: none;
+    }
+
+    .communication-points__item {
+      position: relative;
+      padding: 18px 20px 18px 50px;
+      border: 1px solid var(--line-200);
+      border-radius: 12px;
+      background: var(--paper-000);
+      color: var(--ink-700);
+    }
+
+    .communication-points__item::before {
+      position: absolute;
+      top: 22px;
+      left: 20px;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--accent-600);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .communication-points__item::after {
+      position: absolute;
+      top: 27px;
+      left: 25px;
+      width: 8px;
+      height: 4px;
+      border-bottom: 1px solid var(--accent-600);
+      border-left: 1px solid var(--accent-600);
+      content: "";
+      transform: rotate(-45deg);
+    }
+
+    .article-tags {
+      margin-top: 58px;
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid var(--line-200);
+    }
+
+    .article-tags__label {
+      margin-right: 4px;
+      color: var(--ink-500);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .article-tags__item {
+      padding: 6px 11px;
+      border: 1px solid var(--line-200);
+      border-radius: 999px;
+      color: var(--ink-700);
+      background: var(--paper-000);
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+
+    .author-panel {
+      position: sticky;
+      top: 112px;
+      align-self: start;
+      padding: 26px;
+      border: 1px solid var(--line-200);
+      border-radius: 16px;
+      background: var(--paper-000);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .author-panel__label {
+      margin-bottom: 20px;
+      color: var(--accent-600);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .author-panel__portrait {
+      width: 76px;
+      height: 76px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line-200);
+      border-radius: 50%;
+      object-fit: cover;
+      filter: saturate(0.9);
+    }
+
+    .author-panel__name {
+      margin-bottom: 10px;
+      font-family: var(--serif-display);
+      font-size: 1.35rem;
+      line-height: 1.4;
+    }
+
+    .author-panel__bio {
+      color: var(--ink-500);
+      font-size: 0.86rem;
+      line-height: 1.75;
+    }
+
+    .author-panel__divider {
+      height: 1px;
+      margin: 22px 0;
+      background: var(--line-200);
+    }
+
+    .author-panel__note {
+      color: var(--ink-700);
+      font-size: 0.78rem;
+      line-height: 1.7;
+    }
+
+    .newsletter-panel {
+      margin-top: 24px;
+      padding: 26px;
+      border: 1px solid var(--accent-100);
+      border-radius: 16px;
+      background: var(--accent-050);
+    }
+
+    .newsletter-panel__title {
+      margin-bottom: 8px;
+      font-family: var(--serif-display);
+      font-size: 1.15rem;
+    }
+
+    .newsletter-panel__copy {
+      margin-bottom: 18px;
+      color: var(--ink-700);
+      font-size: 0.8rem;
+      line-height: 1.65;
+    }
+
+    .newsletter-panel__form {
+      display: grid;
+      gap: 8px;
+    }
+
+    .newsletter-panel__input {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--line-200);
+      border-radius: 9px;
+      outline: none;
+      background: var(--paper-000);
+      color: var(--ink-900);
+      font-size: 0.8rem;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .newsletter-panel__input:focus {
+      border-color: var(--accent-600);
+      box-shadow: 0 0 0 3px var(--accent-100);
+    }
+
+    .newsletter-panel__button {
+      padding: 11px 14px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--ink-900);
+      color: var(--paper-000);
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 700;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .newsletter-panel__button:hover {
+      background: var(--accent-600);
+      transform: translateY(-1px);
+    }
+
+    .site-footer {
+      margin-top: 100px;
+      border-top: 1px solid var(--line-200);
+      background: var(--paper-000);
+    }
+
+    .site-footer__inner {
+      width: min(100% - 48px, var(--content-width));
+      min-height: 90px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--ink-500);
+      font-size: 0.78rem;
+    }
+
+    .site-footer__copyright strong {
+      color: var(--ink-900);
+    }
+
+    @keyframes reveal-up {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @supports (animation-timeline: view()) {
+      .scroll-reveal {
+        animation: reveal-up linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 28%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 940px) {
+      .editorial-frame {
+        grid-template-columns: 1fr;
+        gap: 56px;
+      }
+
+      .author-panel {
+        position: static;
+        max-width: var(--reading-width);
+      }
+
+      .newsletter-panel {
+        max-width: var(--reading-width);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header__inner,
+      .editorial-frame,
+      .site-footer__inner {
+        width: min(100% - 32px, var(--content-width));
+      }
+
+      .site-header__inner {
+        min-height: 68px;
+      }
+
+      .brand-mark__detail {
+        display: none;
+      }
+
+      .primary-nav__list {
+        gap: 18px;
+      }
+
+      .primary-nav__link {
+        font-size: 0.76rem;
+      }
+
+      .editorial-frame {
+        padding-top: 48px;
+      }
+
+      .article-header__title {
+        font-size: 2.25rem;
+      }
+
+      .article-header__dek {
+        font-size: 0.98rem;
+      }
+
+      .article-hero {
+        margin-bottom: 38px;
+        border-radius: 12px;
+      }
+
+      .article-content > p {
+        font-size: 0.98rem;
+      }
+
+      .article-section {
+        margin: 44px 0;
+      }
+
+      .article-quote {
+        padding: 22px;
+      }
+
+      .site-footer__inner {
+        min-height: 76px;
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 0;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="#home" class="brand-mark" aria-label="Derek Ronquillo home">
+        Derek Ronquillo
+        <span class="brand-mark__detail">BLOG POST</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <ul class="primary-nav__list">
+          <li>
+            <a class="primary-nav__link" href="#home">Home</a>
+          </li>
+          <li>
+            <a class="primary-nav__link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="editorial-frame">
+    <article class="article-column">
+      <header class="article-header scroll-reveal">
+        <span class="article-header__eyebrow">English · Environmental Advocacy</span>
+        <h1 class="article-header__title">Small Actions, Cleaner Communities: Young People for Responsible Waste Management</h1>
+        <p class="article-header__dek">
+          Proper waste disposal starts with everyday choices, while social media can help young people turn environmental awareness into positive community action.
+        </p>
+
+        <div class="article-meta" aria-label="Article information">
+          <span>By <strong class="article-meta__author">Derek Ronquillo</strong></span>
+          <span class="article-meta__separator" aria-hidden="true"></span>
+          <time datetime="2026-09-11">September 11, 2026</time>
+          <span class="article-meta__separator" aria-hidden="true"></span>
+          <span>3 min read</span>
+        </div>
+      </header>
+
+      <figure class="article-hero scroll-reveal">
+        <img
+          class="article-hero__image"
+          src="https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?q=80&w=1600&auto=format&fit=crop"
+          alt="People participating in an environmental cleanup"
+          loading="eager"
+        >
+        <figcaption class="article-hero__caption">
+          Cleaner communities begin when people take responsibility for the waste they create.
+        </figcaption>
+      </figure>
+
+      <div class="article-content">
+        <p class="scroll-reveal">
+          Proper waste disposal is important because litter can damage public spaces, pollute waterways, and harm people, animals, and the environment. When plastic, food containers, and other waste are left on streets, parks, and waterways, they can create unhealthy and unpleasant surroundings. Keeping waste in the proper place helps communities remain cleaner, safer, and more sustainable.
+        </p>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">01 — WHY IT MATTERS</span>
+          <h2 class="article-section__heading">A cleaner environment begins with responsible habits</h2>
+          <p>
+            Young people can help by practicing simple habits every day. They can avoid littering, separate waste correctly, reduce unnecessary single-use plastics, bring reusable bags and bottles, and join community cleanup activities. They can also encourage classmates, friends, and family members to make responsible choices. Small actions may seem simple, but consistent participation can create a meaningful difference when many people work together.
+          </p>
+        </section>
+
+        <blockquote class="article-quote scroll-reveal">
+          <p class="article-quote__text">
+            “A cleaner community starts with the choices we make every day.”
+          </p>
+          <span class="article-quote__source">Environmental advocacy message</span>
+        </blockquote>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">02 — YOUTH ACTION</span>
+          <h2 class="article-section__heading">Young people can lead by example</h2>
+          <p>
+            Youth participation is valuable because young people can influence their peers and communities. Students can become examples of responsible waste management by practicing what they encourage others to do.
+          </p>
+
+          <ul class="communication-points">
+            <li class="communication-points__item">
+              <strong>Reduce waste.</strong> Choose reusable products and avoid unnecessary plastic.
+            </li>
+            <li class="communication-points__item">
+              <strong>Dispose properly.</strong> Use the correct bins and follow local waste practices.
+            </li>
+            <li class="communication-points__item">
+              <strong>Participate.</strong> Join cleanups and community environmental activities.
+            </li>
+          </ul>
+        </section>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">03 — SOCIAL MEDIA</span>
+          <h2 class="article-section__heading">Turning online platforms into tools for change</h2>
+          <p>
+            Social media can spread environmental messages quickly and reach many young people. Students can create posters, short videos, informative posts, and community challenges that explain proper waste disposal and encourage participation. Using clear information, respectful language, relevant hashtags, and a direct call to action can make the campaign easier to understand and share.
+          </p>
+          <p>
+            Social media should not only make people aware of the problem. It should encourage real action offline, such as reducing waste, keeping public areas clean, and participating in community programs.
+          </p>
+        </section>
+
+        <section class="article-section scroll-reveal">
+          <span class="article-section__number">CONCLUSION</span>
+          <h2 class="article-section__heading">From awareness to action</h2>
+          <p>
+            Proper waste disposal is everyone's responsibility. Young people can help protect the environment through simple daily habits and active community participation. At the same time, social media can amplify these efforts by connecting people, sharing useful information, and encouraging positive action. A single post may start a conversation, but consistent action can help create a cleaner and more responsible community.
+          </p>
+        </section>
+
+        <div class="article-tags scroll-reveal" aria-label="Article tags">
+          <span class="article-tags__label">Tags</span>
+          <span class="article-tags__item">Waste Management</span>
+          <span class="article-tags__item">Environmental Awareness</span>
+          <span class="article-tags__item">Youth Advocacy</span>
+          <span class="article-tags__item">Social Media Campaign</span>
+          <span class="article-tags__item">Proper Waste Disposal</span>
+          <span class="article-tags__item">Community Action</span>
+          <span class="article-tags__item">Environmental Responsibility</span>
+          <span class="article-tags__item">Social Change</span>
+        </div>
+      </div>
+    </article>
+
+    <aside class="author-column">
+      <section class="author-panel scroll-reveal">
+        <p class="author-panel__label">About the Author</p>
+        <img
+          class="author-panel__portrait"
+          src="https://avatars.githubusercontent.com/u/221352729?v=4"
+          alt="Portrait placeholder for Derek Ronquillo"
+          loading="lazy"
+        >
+        <h2 class="author-panel__name">Derek Ronquillo</h2>
+        <p class="author-panel__bio">
+          I’m a Filipino/Chinese man living in Cavite. I’m a Grade 11 student interested in software engineering, technology, creative work, and continuous learning. I enjoy turning ideas into practical projects and using communication to share useful ideas.
+        </p>
+        <div class="author-panel__divider"></div>
+        <p class="author-panel__note">
+          This article was created as a social media advocacy message encouraging young people to practice proper waste disposal and environmental responsibility.
+        </p>
+      </section>
+
+      <div class="newsletter-panel">
+        <h3 class="newsletter-panel__title">Stay Informed</h3>
+        <p class="newsletter-panel__copy">Subscribe for updates on environmental awareness, youth advocacy, and community action.</p>
+        <form class="newsletter-panel__form">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input type="email" id="newsletter-email" class="newsletter-panel__input" placeholder="Enter your email" required>
+          <button type="submit" class="newsletter-panel__button">Subscribe</button>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="site-footer__inner">
+      <p class="site-footer__copyright">&copy; 2026 <strong>Derek Ronquillo</strong>. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
